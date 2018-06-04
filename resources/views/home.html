@@ -1,0 +1,12 @@
+{% extends 'templates/app.html' %}
+
+{% block title %}Shopping Cart{% endblock %}
+{% block content %}
+    <div class="row">
+        {% for index, product in products %}
+            <div class="col-md-4 col-sm-6">
+                {% include 'products/partials/item.html' with { product: product} %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

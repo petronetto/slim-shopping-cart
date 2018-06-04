@@ -1,0 +1,74 @@
+version: '3'
+services:
+#---------------------------------------------
+# API container
+#---------------------------------------------
+  cart.api:
+    container_name: cart.api
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+      - ./sock:/sock
+      - ./log/php:/var/log/php
+    links:
+      - cart.mysql
+      - cart.redis
+    networks:
+      - cart
+#---------------------------------------------
+# NGINX Container
+#---------------------------------------------
+  cart.nginx:
+    container_name: cart.nginx
+    build: ./docker/nginx
+    restart: unless-stopped
+    links:
+      - cart.api
+    volumes:
+      - ./:/app
+      - ./sock:/sock
+      - ./log/nginx:/var/log/nginx
+    ports:
+      - 8080:8080
+    networks:
+      - cart
+#---------------------------------------------
+# mysql Container
+#---------------------------------------------
+  cart.mysql:
+    container_name: cart.mysql
+    image: mysql:5.7
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cart
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: secret
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    networks:
+      - cart
+#---------------------------------------------
+# Redis Container
+#---------------------------------------------
+  cart.redis:
+    container_name: cart.redis
+    image: redis:alpine
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis:/data
+    networks:
+      - cart
+#-------------------------------------------------------
+# Networks
+#-------------------------------------------------------
+networks:
+  cart:
+    external: true

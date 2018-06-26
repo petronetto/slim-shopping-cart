@@ -53,7 +53,7 @@
                     <h5>Cart summary</h5>
                     <hr>
                     {% include "cart/partials/summary.html" %}
-                    <a href="#" class="btn btn-outline-secondary">Checkout</a>
+                    <a href="{{ path_for('order.index') }}" class="btn btn-outline-secondary">Checkout</a>
                 </div>
             {% endif %}
         </div>

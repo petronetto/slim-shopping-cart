@@ -1,0 +1,23 @@
+#!/bin/bash
+
+function create_docker_network {
+    if [ "$(docker network ls --format {{.Name}} | grep cart)" = "" ];
+    then
+        docker network create cart
+    fi
+}
+
+function up {
+    create_docker_network
+    docker-compose -f docker-compose.yml up -d
+}
+
+case $1 in
+"up")
+    shift
+    up $@
+    exit 0
+    ;;
+esac
+
+exit 0

@@ -9,10 +9,10 @@ To start the application simple run `./service up`, also you need import the `mi
 
 
 ### TODO
-[ ] Unit tests  
-[ ] Integration tests  
-[ ] One command script to start application  
-[ ] PHPCS to ensure the code styles  
+- [ ] Unit tests
+- [ ] Integration tests
+- [ ] One command script to start application
+- [ ] PHPCS to ensure the code styles
 
 
 ### License

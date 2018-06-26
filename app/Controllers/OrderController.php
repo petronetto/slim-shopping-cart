@@ -2,7 +2,6 @@
 
 namespace Cart\Controllers;
 
-use Cart\Models\Product;
 use Cart\Services\BasketService;
 
 class OrderController extends BaseController

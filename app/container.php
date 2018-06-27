@@ -5,6 +5,8 @@ use Cart\Models\Product;
 use Cart\Services\BasketService;
 use Cart\Support\Storage\Contracts\StorageInterface;
 use Cart\Support\Storage\SessionStorage;
+use Cart\Validation\Contracts\ValidatiorInterface;
+use Cart\Validation\Validatior;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -23,6 +25,9 @@ return [
     },
     RouterInterface::class        => function (Container $c) {
         return $c->get('router');
+    },
+    ValidatiorInterface::class    => function (Container $c) {
+        return new Validatior;
     },
     StorageInterface::class       => function (Container $c) {
         return new SessionStorage('cart');

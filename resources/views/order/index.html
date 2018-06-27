@@ -1,7 +1,7 @@
 {% extends 'templates/app.html' %}
 
 {% block content %}
-    <form action="#" method="POST">
+    <form action="{{ path_for('order.create') }}" method="POST">
         <div class="row">
             <div class="col-md-8">
                 <div class="row">
@@ -10,11 +10,23 @@
                         <hr/>
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input class="form-control" type="email" name="email" id="email">
+                            <input class="form-control {% if errors.email %} is-invalid {% endif %}"
+                                type="email" name="email" id="email" value="{{ old.email }}">
+                            {% if errors.email %}
+                                <span class="invalid-feedback">
+                                    {{ errors.email | first }}
+                                </span>
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input class="form-control" type="text" name="name" id="name">
+                            <input class="form-control {% if errors.name %} is-invalid {% endif %}"
+                                type="text" name="name" id="name" value="{{ old.name }}">
+                            {% if errors.name %}
+                                <span class="invalid-feedback">
+                                    {{ errors.name | first }}
+                                </span>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -22,25 +34,55 @@
                         <hr/>
                         <div class="form-group">
                             <label for="adrress1">Address line 1</label>
-                            <input class="form-control" type="text" name="adrress1" id="adrress1">
+                            <input class="form-control {% if errors.address1 %} is-invalid {% endif %}"
+                                type="text" name="adrress1" id="adrress1" value="{{ old.adrress1 }}">
+                            {% if errors.address1 %}
+                                <span class="invalid-feedback">
+                                    {{ errors.address1 | first }}
+                                </span>
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             <label for="adrress2">Address line 2</label>
-                            <input class="form-control" type="text" name="adrress2" id="adrress2">
+                            <input class="form-control {% if errors.address2 %} is-invalid {% endif %}"
+                                type="text" name="address2" id="address2" value="{{ old.address2 }}">
+                            {% if errors.address2 %}
+                                <span class="invalid-feedback">
+                                    {{ errors.address2 | first }}
+                                </span>
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             <label for="city">City</label>
-                            <input class="form-control" type="text" name="city" id="city">
+                            <input class="form-control {% if errors.city %} is-invalid {% endif %}"
+                                type="text" name="city" id="city" value="{{ old.city }}">
+                            {% if errors.city %}
+                                <span class="invalid-feedback">
+                                    {{ errors.city | first }}
+                                </span>
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             <label for="zip">Zip code</label>
-                            <input class="form-control" type="text" name="zip" id="zip">
+                            <input class="form-control {% if errors.zip %} is-invalid {% endif %}"
+                                type="text" name="zip" id="zip" value="{{ old.zip }}">
+                            {% if errors.zip %}
+                                <span class="invalid-feedback">
+                                    {{ errors.zip | first }}
+                                </span>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
+                <div class="card card-body bg-light">
+                    <h5>Your Order</h5>
+                    {% include 'cart/partials/contents.html' %}
+                    {% include 'cart/partials/summary.html' %}
 
+                    <button class="btn btn-outline-secondary" type="submit">Place order</button>
+                </div>
             </div>
         </div>
     </form>

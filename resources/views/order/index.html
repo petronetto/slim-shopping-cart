@@ -33,9 +33,9 @@
                         <h3>Shipping address</h3>
                         <hr/>
                         <div class="form-group">
-                            <label for="adrress1">Address line 1</label>
+                            <label for="address1">Address line 1</label>
                             <input class="form-control {% if errors.address1 %} is-invalid {% endif %}"
-                                type="text" name="adrress1" id="adrress1" value="{{ old.adrress1 }}">
+                                type="text" name="address1" id="address1" value="{{ old.address1 }}">
                             {% if errors.address1 %}
                                 <span class="invalid-feedback">
                                     {{ errors.address1 | first }}
@@ -43,7 +43,7 @@
                             {% endif %}
                         </div>
                         <div class="form-group">
-                            <label for="adrress2">Address line 2</label>
+                            <label for="address2">Address line 2</label>
                             <input class="form-control {% if errors.address2 %} is-invalid {% endif %}"
                                 type="text" name="address2" id="address2" value="{{ old.address2 }}">
                             {% if errors.address2 %}
@@ -63,12 +63,12 @@
                             {% endif %}
                         </div>
                         <div class="form-group">
-                            <label for="zip">Zip code</label>
-                            <input class="form-control {% if errors.zip %} is-invalid {% endif %}"
-                                type="text" name="zip" id="zip" value="{{ old.zip }}">
-                            {% if errors.zip %}
+                            <label for="zipcode">Zip code</label>
+                            <input class="form-control {% if errors.zipcode %} is-invalid {% endif %}"
+                                type="text" name="zipcode" id="zipcode" value="{{ old.zipcode }}">
+                            {% if errors.zipcode %}
                                 <span class="invalid-feedback">
-                                    {{ errors.zip | first }}
+                                    {{ errors.zipcode | first }}
                                 </span>
                             {% endif %}
                         </div>
